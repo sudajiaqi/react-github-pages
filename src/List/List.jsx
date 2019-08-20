@@ -7,6 +7,8 @@ const List = (props) => {
   const { data, onChnage, page } = props;
   return (
     <div>
+      <h4>Blog List</h4>
+      <hr />
       {data.map((gist) => (
         <Item key={gist.url} gist={gist} />
       ))}

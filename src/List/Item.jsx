@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import './Item.css';
 
 class Item extends React.Component {
   render() {
@@ -8,12 +9,12 @@ class Item extends React.Component {
     const { description, files, id } = gist;
     console.log(files);
     return (
-      <div>
-        <div>
+      <div className="gist-item">
+        <div className="gist-title">
           <h2>{Object.keys(files)[0]}</h2>
           <Link to={`/gists/${id}`}>detail</Link>
         </div>
-        <h3>{description}</h3>
+        <span>{description}</span>
       </div>
     );
   }

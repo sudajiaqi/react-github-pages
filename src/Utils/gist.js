@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-
+const userName = process.env.USER_NAME;
 export const getGists = (page = 1) => {
   const config = {
     // Accept: 'application/vnd.github.v3+json',
@@ -10,7 +10,7 @@ export const getGists = (page = 1) => {
     //   Authorization: 'token 3cb476c3b0281ee28bb50f4e7e5dd0d75f4d165f',
     // },
   };
-  return axios.get('/users/godmoonlight/gists', config);
+  return axios.get(`/users/${userName}/gists`, config);
 };
 
 

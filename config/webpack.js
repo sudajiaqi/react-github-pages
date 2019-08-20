@@ -2,11 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const root = path.resolve(__dirname, '..');
 
 const publicPath = path.resolve(root, 'dist');
-module.exports = {
+module.exports = (env) => ({
   entry: path.resolve(root, 'src/index.jsx'),
   output: {
     filename: 'js/[name].[contenthash].js',
@@ -28,6 +29,9 @@ module.exports = {
   },
 
   plugins: [
+    new Dotenv({
+      path: path.resolve(__dirname, `${env}.env`),
+    }),
     new CleanWebpackPlugin.CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(root, 'index.html'),
@@ -54,4 +58,4 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
-};
+});

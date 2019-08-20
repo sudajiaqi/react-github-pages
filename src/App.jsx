@@ -7,8 +7,9 @@ import List from './List';
 import MarkDown from './Markdown';
 import history from './history';
 import Editor from './Editor/Editor';
+import './App.css';
 
-class APP extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,21 +41,26 @@ class APP extends React.Component {
     return (
       <Router history={history}>
         <NavBar />
-        <Switch>
-          <Route path="/" exact>
-            <List page={page} onChnage={this.handleFetchGists} data={this.state.data} />
-          </Route>
-          <Route exact path="/gists/new">
-            <Editor />
-          </Route>
-          <Route path="/gists/:id">
-            <MarkDown />
-          </Route>
+        <div className="content">
 
-        </Switch>
+
+          <Switch>
+            <Route path="/" exact>
+              <List page={page} onChnage={this.handleFetchGists} data={this.state.data} />
+            </Route>
+            <Route exact path="/gists/new">
+              <Editor />
+            </Route>
+            <Route path="/gists/:id">
+              <MarkDown />
+            </Route>
+
+          </Switch>
+        </div>
       </Router>
+
     );
   }
 }
 
-export default APP;
+export default App;

@@ -1,0 +1,13 @@
+.gist-item {
+    border: #767676 solid 1px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.gist-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
