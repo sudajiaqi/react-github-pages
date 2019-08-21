@@ -9,7 +9,7 @@ const publicPath = path.resolve(root, 'dist');
 module.exports = merge(baseConfig('dev'), {
   mode: 'development',
   devServer: {
-    port: '3000',
+    port: '8080',
     contentBase: publicPath,
     historyApiFallback: true,
   },

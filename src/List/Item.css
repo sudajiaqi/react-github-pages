@@ -1,13 +1,22 @@
 .gist-item {
-    border: #767676 solid 1px;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px 0;
+  border: #dfe2e9 solid 1px;
+  border-radius: 5px;
+  margin: 10px 0;
+  display: block;
+  background: white;
+  padding: 1em;
+  color: #333333;
+  overflow-x: auto;
 }
 
 .gist-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+}
+
+a {
+  color: #488dff;
 }
 

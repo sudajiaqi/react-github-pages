@@ -4,7 +4,9 @@ import './Button.css';
 
 class Button extends React.PureComponent {
   render() {
-    const { children, className, disabled, onClick } = this.props;
+    const {
+      children, className, disabled, onClick,
+    } = this.props;
     return (
       <button type="button" disabled={disabled} onClick={onClick} className={`button ${className}`}>
         {children}

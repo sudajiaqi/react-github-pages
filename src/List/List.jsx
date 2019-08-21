@@ -1,27 +1,60 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Item from './Item';
 import Button from '../Button';
+import './List.css';
+import gist from '../Utils';
+import history from '../history';
+import query from './query';
 
-const List = (props) => {
-  const { data, onChnage, page } = props;
-  return (
-    <div>
-      <h4>Blog List</h4>
-      <hr />
-      {data.map((gist) => (
-        <Item key={gist.url} gist={gist} />
-      ))}
-      <Button disabled={page <= 1} onClick={() => onChnage(page - 1)}>Prev</Button>
-      <Button disabled={data.length <= 0} onClick={() => onChnage(page + 1)}>Next</Button>
-    </div>
-  );
-};
+class List extends React.Component {
+  state = {
+    gists: [],
+    page: 1,
+  };
 
-List.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  page: PropTypes.number.isRequired,
-  onChnage: PropTypes.func.isRequired,
-};
+  componentDidMount() {
+    const { page } = query.parse(history.location.search);
+    this.getGistsByPage(page);
+  }
+
+  getGistsByPage = (page = 1) => {
+    const { pathname } = history.location;
+    history.push(pathname.concat('?') + query.stringify({ page }));
+    gist.getGists(page)
+      .then(({ data }) => {
+        this.setState({
+          gists: data,
+          page,
+        });
+      });
+  };
+
+  render() {
+    const { gists, page } = this.state;
+    return (
+      <div className="gist-list">
+        <h4>Blog List</h4>
+        <hr />
+        {gists.map((item) => (
+          <Item key={item.url} gist={item} />
+        ))}
+        <div className="gist-page-btn">
+          <Button
+            disabled={page <= 1}
+            onClick={() => this.getGistsByPage(page - 1)}
+          >
+            Prev
+          </Button>
+          <Button
+            disabled={gists.length <= 0}
+            onClick={() => this.getGistsByPage(page + 1)}
+          >
+            Next
+          </Button>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default List;

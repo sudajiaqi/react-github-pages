@@ -1,7 +1,11 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import ReactMde from 'react-mde';
 import Showdown from 'showdown';
 import 'react-mde/lib/styles/css/react-mde-all.css';
+import './Editor.css';
+import hoc from '../GistItemHOC';
+
 
 const converter = new Showdown.Converter({
   tables: true,
@@ -10,8 +14,10 @@ const converter = new Showdown.Converter({
   tasklists: true,
 });
 
-export default function Editor() {
-  const [value, setValue] = React.useState('**Hello world!!!**');
+const Editor = (props) => {
+  const { data } = props;
+  console.log(data, 'test');
+  const [value, setValue] = React.useState(data);
   const [selectedTab, setSelectedTab] = React.useState('write');
   return (
     <div className="container">
@@ -20,8 +26,13 @@ export default function Editor() {
         onChange={setValue}
         selectedTab={selectedTab}
         onTabChange={setSelectedTab}
-        generateMarkdownPreview={markdown => Promise.resolve(converter.makeHtml(markdown))}
+        generateMarkdownPreview={(markdown) => Promise.resolve(converter.makeHtml(markdown))}
       />
     </div>
   );
-}
+};
+
+Editor.propTypes = {
+  data: PropTypes.string.isRequired,
+};
+export default hoc(Editor);

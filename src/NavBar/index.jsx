@@ -10,7 +10,7 @@ class NavBar extends React.Component {
     return (
       <header className="header">
         <nav className="nav">
-          My Blog
+          My Blog 😄
         </nav>
       </header>
     );

@@ -1,7 +1,11 @@
 body {
     margin: 0;
+    color: #4a4a4a;
+    background: #f0f2f5;
+    font-family: sans-serif;
 }
 
 .content {
-    margin: 20px 20px 0 20px;
+    margin: 20px auto;
+    max-width: 1200px;
 }

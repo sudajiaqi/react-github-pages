@@ -9,10 +9,6 @@ class CodeBlock extends React.PureComponent {
     this.setRef = this.setRef.bind(this);
   }
 
-  setRef(el) {
-    this.codeEl = el;
-  }
-
   componentDidMount() {
     this.highlightCode();
   }
@@ -21,16 +17,21 @@ class CodeBlock extends React.PureComponent {
     this.highlightCode();
   }
 
+  setRef(el) {
+    this.codeEl = el;
+  }
+
   highlightCode() {
     console.log(this.codeEl);
     hljs.highlightBlock(this.codeEl);
   }
 
   render() {
+    const { value, language } = this.props;
     return (
       <pre>
-        <code ref={this.setRef} className={`language-${this.props.language} hljs`}>
-          {this.props.value}
+        <code ref={this.setRef} className={`language-${language} hljs`}>
+          {value}
         </code>
       </pre>
     );

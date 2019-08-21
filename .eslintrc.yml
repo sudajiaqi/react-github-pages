@@ -3,6 +3,7 @@ env:
   es6: true
 extends:
   - airbnb
+parser: babel-eslint
 globals:
   Atomics: readonly
   SharedArrayBuffer: readonly
@@ -13,4 +14,14 @@ parserOptions:
   sourceType: module
 plugins:
   - react
-rules: {}
+rules:
+  react/jsx-filename-extension: [1, { "extensions": [".js", ".jsx"] }]
+  react/state-in-constructor: 0
+  import/no-extraneous-dependencies: [error, { devDependencies: true }]
+
+  settings:
+    import/resolver:
+      webpack:
+        config: ./config/webpack.dev.js
+      babel-module:
+        root: ./src
