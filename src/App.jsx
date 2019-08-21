@@ -4,10 +4,10 @@ import { Router } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import NavBar from './NavBar';
 import List from './List';
-import MarkDown from './Markdown';
 import history from './history';
-import Editor from './Editor/Editor';
 import Context from './Context';
+import { Editor, Gist } from './Gist';
+import GistItem from './GistItem';
 import './App.css';
 
 class App extends React.Component {
@@ -19,7 +19,7 @@ class App extends React.Component {
     };
   }
 
-  setGist = (gists) => this.setState({ gists });
+  setGist = (gist) => this.setState({ gist });
 
   render() {
     return (
@@ -35,10 +35,22 @@ class App extends React.Component {
                 <Editor />
               </Route>
               <Route exact path="/gists/:id">
-                <MarkDown />
+                <GistItem>
+                  <Context.Consumer>
+                    {({ gist }) => (
+                      <Gist {...gist} />
+                    )}
+                  </Context.Consumer>
+                </GistItem>
               </Route>
               <Route exact path="/gists/:id/edit">
-                <Editor />
+                <GistItem>
+                  <Context.Consumer>
+                    {({ gist }) => (
+                      <Editor {...gist} />
+                    )}
+                  </Context.Consumer>
+                </GistItem>
               </Route>
             </Switch>
           </div>

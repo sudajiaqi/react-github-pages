@@ -1,8 +1,50 @@
-.container{
-  height: 1000px;
+.container {
+    height: 1000px;
 }
 
 textarea.mde-text {
-  height: 1000px;
+    height: 1000px;
 }
 
+.editor-bar {
+    display: flex;
+    align-items: center;
+}
+
+.image {
+    width: 16px;
+    height: 16px;
+    margin: auto 10px;
+}
+
+
+.textarea-wrapper {
+    position: relative;
+    min-height: 20px;
+    width: 100%;
+}
+
+.textarea-content {
+    display: block;
+    visibility: hidden;
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.3;
+    word-wrap: break-word;
+    padding: 0;
+}
+
+.textarea-wrapper textarea {
+    overflow: hidden;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.3;
+    padding: 0px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}

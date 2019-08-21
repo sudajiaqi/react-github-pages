@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from './CodeBlock';
-import hoc from '../GistItemHOC';
 
-class MarkDown extends React.Component {
+class Index extends React.Component {
   render() {
     const { data } = this.props;
     return (
@@ -20,8 +19,8 @@ class MarkDown extends React.Component {
   }
 }
 
-MarkDown.propTypes = {
+Index.propTypes = {
   data: PropTypes.string.isRequired,
 };
 
-export default hoc(MarkDown);
+export default Index;

@@ -10,18 +10,19 @@ class Wrapper extends React.Component {
     data: '',
   };
 
-
   componentDidMount() {
     const { context } = this.props;
     const { gist } = context;
     if (gist) {
+      if (gist.content) {
+        return;
+      }
       this.getFile(gist);
       return;
     }
     const id = history.location.pathname.split('/')[2];
     Gist.getGist(id)
       .then(({ data }) => {
-        context.setGist(data);
         this.getFile(data);
       });
   }
@@ -29,18 +30,20 @@ class Wrapper extends React.Component {
   getFile = (gist) => {
     axios.get(Object.values(gist.files)[0].raw_url)
       .then(({ data }) => {
+        const { context } = this.props;
+        const title = Object.keys(gist.files)[0];
+        context.setGist({ ...gist, title, content: data });
         this.setState({ data });
       });
   };
 
   render() {
     const { data } = this.state;
-    const { component: Component, componentProps } = this.props;
+    const { children } = this.props;
 
     return data.length > 0 && (
       <div>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Component {...componentProps} data={data} />
+        {children}
       </div>
     );
   }
@@ -48,14 +51,10 @@ class Wrapper extends React.Component {
 
 Wrapper.propTypes = {
   context: PropTypes.shape().isRequired,
-  component: PropTypes.func.isRequired,
-  componentProps: PropTypes.shape().isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 const WrapperConsumer = consumer(Wrapper);
 
-const GistItem = (Component) => (props) => (
-  <WrapperConsumer component={Component} componentProps={props} />);
 
-
-export default GistItem;
+export default WrapperConsumer;
