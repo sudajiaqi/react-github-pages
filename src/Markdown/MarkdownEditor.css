@@ -1,0 +1,17 @@
+.container {
+    height: 1000px;
+}
+
+.editor-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.preview {
+    display: inline-block;
+    cursor: pointer;
+    height: 28px;
+    width: 28px;
+    margin: auto 10px;
+}

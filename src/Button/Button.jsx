@@ -18,12 +18,14 @@ class Button extends React.PureComponent {
 Button.defaultProps = {
   className: '',
   disabled: false,
+  onClick: () => {
+  },
 };
 
 Button.propTypes = {
   disabled: PropTypes.bool,
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   className: PropTypes.string,
 };
 

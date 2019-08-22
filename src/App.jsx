@@ -1,13 +1,14 @@
 /* eslint-disable react/no-unused-state */
 import React from 'react';
 import { Router } from 'react-router';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import Switch from './Switch';
 import NavBar from './NavBar';
 import List from './List';
 import history from './history';
 import Context from './Context';
-import { Editor, Gist } from './Gist';
-import GistItem from './GistItem';
+import Gist, { Editor } from './Gist';
+import Error from './Error';
 import './App.css';
 
 class App extends React.Component {
@@ -34,24 +35,10 @@ class App extends React.Component {
               <Route exact path="/gists/new">
                 <Editor />
               </Route>
-              <Route exact path="/gists/:id">
-                <GistItem>
-                  <Context.Consumer>
-                    {({ gist }) => (
-                      <Gist {...gist} />
-                    )}
-                  </Context.Consumer>
-                </GistItem>
+              <Route path="/gists/:id">
+                <Gist />
               </Route>
-              <Route exact path="/gists/:id/edit">
-                <GistItem>
-                  <Context.Consumer>
-                    {({ gist }) => (
-                      <Editor {...gist} />
-                    )}
-                  </Context.Consumer>
-                </GistItem>
-              </Route>
+              <Route exact path="/error" component={Error} />
             </Switch>
           </div>
         </Router>

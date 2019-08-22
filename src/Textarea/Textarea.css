@@ -1,0 +1,31 @@
+.textarea-wrapper {
+  position: relative;
+  min-height: 20px;
+  width: 100%;
+}
+
+.textarea-content {
+  display: block;
+  visibility: hidden;
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.3;
+  word-wrap: break-word;
+  padding: 0px;
+}
+
+.textarea-wrapper textarea {
+  overflow: hidden;
+  border: #dfe2e9 solid 1px;
+  border-radius: 5px;
+  padding: 1.5em;
+  resize: none;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.3;
+  position: absolute;
+  left: 0;
+  top: 0;
+}

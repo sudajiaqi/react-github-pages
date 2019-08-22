@@ -1,4 +1,5 @@
-import Gist from './Gist';
+import Gist from './Container';
 import Editor from './Editor';
 
-export { Editor, Gist };
+export { Editor };
+export default Gist;
