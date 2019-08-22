@@ -5,6 +5,7 @@ import Input from '../Input';
 import './Editor.css';
 import Textarea from '../Textarea';
 import Button from '../Button';
+import gistActions from '../Utils';
 
 class Editor extends Component {
   constructor(props) {
@@ -30,9 +31,9 @@ class Editor extends Component {
   };
 
   handleSave = () => {
-    const { content } = this.state;
+    const { content, title, description } = this.state;
     console.log(content);
-
+    gistActions.updateGist(this.props.id, title, description, content);
   };
 
   render() {
@@ -58,8 +59,10 @@ Editor.defaultProps = {
   title: '',
   description: '',
   content: '',
+  id: null,
 };
 Editor.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
   content: PropTypes.string,

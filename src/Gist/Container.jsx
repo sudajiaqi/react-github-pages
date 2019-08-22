@@ -65,6 +65,7 @@ class GistContainer extends React.Component {
         </Route>
         <Route exact path="/gists/:id/edit">
           <Editor
+            id={id}
             title={title}
             description={description}
             content={content}
