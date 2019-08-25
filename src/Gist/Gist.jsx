@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Markdown from '../Markdown';
 import Button from '../Button';
+import { visible } from '../Context/Authentication';
+
+const AuthLink = visible(Link);
 
 const Gist = (props) => {
   const {
@@ -13,7 +16,7 @@ const Gist = (props) => {
     <div>
       <div className="gist-title">
         <h3>{title}</h3>
-        <Link to={`/gists/${id}/edit`}><h3><Button>Edit</Button></h3></Link>
+        <AuthLink to={`/gists/${id}/edit`}><h3><Button>Edit</Button></h3></AuthLink>
       </div>
       <p>
         <b>Created At: </b>

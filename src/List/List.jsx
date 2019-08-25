@@ -5,6 +5,7 @@ import './List.css';
 import gist from '../Utils';
 import history from '../history';
 import query from './query';
+import { Link } from 'react-router-dom';
 
 class List extends React.Component {
   state = {
@@ -33,8 +34,11 @@ class List extends React.Component {
     const { gists, page } = this.state;
     return (
       <div className="gist-list">
-        <h4>Blog List</h4>
-        <hr />
+        <div className="gist-list-title">
+          <h4>Blog List</h4>
+          <Link to="/gists/new"><Button>+ New Blog</Button></Link>
+        </div>
+
         {gists.map((item) => (
           <Item key={item.url} gist={item} />
         ))}

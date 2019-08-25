@@ -1,13 +1,29 @@
 import axios from 'axios';
-import { getToken } from './cookie';
+import cookies from './cookie';
+import { baseURL, userName } from '../Constants';
 
-const token = getToken();
-const baseURL = 'https://api.github.com';
-const userName = process.env.USER_NAME;
+const token = cookies.getToken();
+const configWithToken = {
+  headers: {
+    Authorization: `token ${token}`,
+  },
+};
 
 const instance = axios.create({
   baseURL,
 });
+
+export const getAuthentication = (newToken) => {
+  const config = {
+    headers: {
+      Authorization: `token ${newToken}`,
+    },
+  };
+  return instance.get('/', config);
+};
+
+
+export const getUser = () => instance.get(`/users/${userName}`);
 
 export const getGists = (page = 1) => {
   const config = {
@@ -17,9 +33,7 @@ export const getGists = (page = 1) => {
 };
 
 
-export const getGist = (id) => {
-  return instance.get(`/gists/${id}`);
-};
+export const getGist = (id) => instance.get(`/gists/${id}`);
 
 export const updateGist = (id, title, description, content) => {
   const data = {
@@ -29,12 +43,8 @@ export const updateGist = (id, title, description, content) => {
       [title]: { content },
     },
   };
-  const config = {
-    headers: {
-      Authorization: 'token 7511b53cde97b30c992118f75c57cd4d2ab65b5d',
-    },
-  };
-  return instance.patch(`/gists/${id}`, data, config);
+
+  return instance.patch(`/gists/${id}`, data, configWithToken);
 };
 
 export const createGist = (title, description, content) => {
@@ -45,10 +55,9 @@ export const createGist = (title, description, content) => {
       [title]: { content },
     },
   };
-  const config = {
-    // headers: {
-    //   Authorization: 'token 3cb476c3b0281ee28bb50f4e7e5dd0d75f4d165f',
-    // },
-  };
-  return instance.put('/gists', data, config);
+
+  return instance.put('/gists', data, configWithToken);
 };
+
+
+export const deleteGist = (id) => instance.delete(`/gists/${id}`, configWithToken);

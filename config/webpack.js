@@ -37,7 +37,7 @@ module.exports = (env) => ({
     new HtmlWebpackPlugin({
       favicon: path.resolve(root, 'favicon.jpeg'),
       template: path.resolve(root, 'index.html'),
-      title: 'Output Management',
+      title: 'JiaQi\'s Blog',
     }),
   ],
   module: {

@@ -8,6 +8,9 @@ import gistActions from '../Utils';
 import Gist from './Gist';
 import Switch from '../Switch';
 import Editor from './Editor';
+import { visible } from '../Context/Authentication';
+
+const AuthRoute = visible(Route);
 
 class GistContainer extends React.Component {
   state = {
@@ -48,9 +51,10 @@ class GistContainer extends React.Component {
 
   render() {
     const { data } = this.state;
+    const { context } = this.props;
     const {
       title, description, content, updated_at: updatedAt, created_at: createdAt, id,
-    } = data || {};
+    } = context.gist || {};
     return data && (
       <Switch>
         <Route exact path="/gists/:id">
@@ -63,14 +67,14 @@ class GistContainer extends React.Component {
             content={content}
           />
         </Route>
-        <Route exact path="/gists/:id/edit">
+        <AuthRoute exact path="/gists/:id/edit">
           <Editor
             id={id}
             title={title}
             description={description}
             content={content}
           />
-        </Route>
+        </AuthRoute>
       </Switch>
     );
   }

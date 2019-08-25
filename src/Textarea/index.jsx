@@ -5,10 +5,10 @@ import './Textarea.css';
 
 const Textarea = React.forwardRef((props, ref) => {
   const {
-    onChange, onSelect, value,
+    onChange, onSelect, value, className,
   } = props;
   return (
-    <div className="textarea-wrapper">
+    <div className={`textarea-wrapper ${className}`}>
       <pre className="textarea-content">{value}</pre>
       <textarea
         {...props}
@@ -24,6 +24,7 @@ const Textarea = React.forwardRef((props, ref) => {
 
 Textarea.defaultProps = {
   value: '',
+  className: '',
   onChange: () => {
   },
   onSelect: () => {
@@ -31,6 +32,7 @@ Textarea.defaultProps = {
 };
 
 Textarea.propTypes = {
+  className: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
   onSelect: PropTypes.func,

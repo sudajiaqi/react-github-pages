@@ -5,7 +5,9 @@ import Input from '../Input';
 import './Editor.css';
 import Textarea from '../Textarea';
 import Button from '../Button';
+import history from '../history';
 import gistActions from '../Utils';
+import { consumer } from '../Context';
 
 class Editor extends Component {
   constructor(props) {
@@ -32,8 +34,17 @@ class Editor extends Component {
 
   handleSave = () => {
     const { content, title, description } = this.state;
-    console.log(content);
-    gistActions.updateGist(this.props.id, title, description, content);
+    const { id } = this.props;
+    gistActions.updateGist(id, title, description, content).then(({ data }) => {
+      const { context } = this.props;
+      const newGist = {
+        ...data,
+        title,
+        content,
+      };
+      context.setGist(newGist);
+      history.push(`/gists/${data.id}`);
+    });
   };
 
   render() {
@@ -42,7 +53,7 @@ class Editor extends Component {
     return (
       <div>
         <h3>Title :</h3>
-        <Input className="gist-title-input" value={title} onChanged={this.setTitle} />
+        <Input className="gist-title-input" value={title} onChange={this.setTitle} />
         <Button onClick={this.handleSave}>Save</Button>
         <div>
           <h3>Description :</h3>
@@ -66,5 +77,6 @@ Editor.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   content: PropTypes.string,
+  context: PropTypes.shape().isRequired,
 };
-export default Editor;
+export default consumer(Editor);

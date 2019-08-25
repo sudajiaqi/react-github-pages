@@ -197,6 +197,7 @@ class MarkdownEditor extends React.Component {
         {selectedTab === MODE.WRITE ? (
           <Textarea
             value={value}
+            className="markdown-textarea"
             ref={this.textarea}
             onChange={this.handleTextChanged}
             onSelect={this.handleSelected}

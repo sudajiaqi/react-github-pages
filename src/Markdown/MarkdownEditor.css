@@ -15,3 +15,7 @@
     width: 28px;
     margin: auto 10px;
 }
+
+.markdown-textarea {
+    min-height: 400px;
+}

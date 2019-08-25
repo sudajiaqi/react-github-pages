@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import './Input.css';
 
 const Input = (props) => {
-  const { onChanged, value, className } = props;
+  const { onChange, value, className } = props;
   return (
-    <input className={`input ${className}`} value={value} onChange={(event) => onChanged(event.target.value)} />
+    <input className={`input ${className}`} value={value} onChange={(event) => onChange(event.target.value)} />
   );
 };
 Input.defaultProps = {
@@ -15,7 +15,7 @@ Input.defaultProps = {
 Input.propTypes = {
   className: PropTypes.string,
   value: PropTypes.string.isRequired,
-  onChanged: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Input;

@@ -2,6 +2,13 @@
 
 }
 
+.gist-list-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #2e3033;
+}
+
 .gist-page-btn {
   text-align: center;
 }

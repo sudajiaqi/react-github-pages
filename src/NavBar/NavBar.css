@@ -1,5 +1,4 @@
 .header {
-    height: 80px;
     border-bottom: 1px;
     background-color: #3c4146;
     border-bottom-color: #202326;
@@ -9,4 +8,36 @@
     color: #767676;
     padding-bottom: 25px;
     text-align: center;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    margin: auto 30px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+.nav-link {
+    color: white;
+    text-decoration: none;
+    margin: auto 15px;
+}
+
+.nav-menu-item {
+    text-decoration: none;
+    color: #2e3033;
+}
+.github {
+    margin-right: 40px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 20%;
 }

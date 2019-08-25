@@ -7,9 +7,14 @@ import NavBar from './NavBar';
 import List from './List';
 import history from './history';
 import Context from './Context';
+import { Provider, visible } from './Context/Authentication';
 import Gist, { Editor } from './Gist';
+import { cookies } from './Utils';
 import Error from './Error';
+import Setting from './Setting';
 import './App.css';
+
+const AuthRoute = visible(Route);
 
 class App extends React.Component {
   constructor(props) {
@@ -25,23 +30,27 @@ class App extends React.Component {
   render() {
     return (
       <Context.Provider value={this.state}>
-        <Router history={history}>
-          <NavBar />
-          <div className="content">
-            <Switch>
-              <Route path="/" exact>
-                <List />
-              </Route>
-              <Route exact path="/gists/new">
-                <Editor />
-              </Route>
-              <Route path="/gists/:id">
-                <Gist />
-              </Route>
-              <Route exact path="/error" component={Error} />
-            </Switch>
-          </div>
-        </Router>
+        <Provider defaultVisible={!!cookies.getToken()}>
+          <Router history={history}>
+            <NavBar />
+            <div className="content">
+              <Switch>
+                <Route path="/" exact>
+                  <List />
+                </Route>
+                <AuthRoute exact path="/gists/new">
+                  <Editor />
+                </AuthRoute>
+                <Route path="/gists/:id">
+                  <Gist />
+                </Route>
+                <Route exact path="/error" component={Error} />
+                <Route exact path="/about" component={Error} />
+                <Route exact path="/setting" component={Setting} />
+              </Switch>
+            </div>
+          </Router>
+        </Provider>
       </Context.Provider>
     );
   }
