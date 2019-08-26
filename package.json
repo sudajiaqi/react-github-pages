@@ -9,7 +9,7 @@
   "homepage": "https://GodMoonLight.github.io",
   "scripts": {
     "predeploy": "yarn prod",
-    "deploy": "gh-pages -d dist -repo https://github.com/GodMoonLight/godmoonlight.github.io.git",
+    "deploy": "gh-pages -d dist -r git@github.com:GodMoonLight/godmoonlight.github.io.git -b master",
     "eslint": "eslint ./src --ext js,jsx",
     "dev": "webpack-dev-server --config=config/webpack.dev.js --color",
     "prod": "webpack --config=config/webpack.prod.js --color"
