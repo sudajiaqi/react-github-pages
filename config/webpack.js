@@ -39,6 +39,15 @@ module.exports = (env) => ({
       template: path.resolve(root, 'index.html'),
       title: 'JiaQi\'s Blog',
     }),
+    new HtmlWebpackPlugin({
+      filename: '404.html',
+      favicon: path.resolve(root, 'favicon.jpeg'),
+      template: path.resolve(root, '404.html'),
+      title: 'JiaQi\'s Blog',
+      files: {
+        js: [],
+      },
+    }),
   ],
   module: {
     rules: [
