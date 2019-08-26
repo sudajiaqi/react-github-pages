@@ -12,3 +12,13 @@
     background: #488dff;
     color: white;
 }
+
+.button:disabled {
+    background: #ccc;
+    color: white;
+}
+
+.button.is-active {
+    background: #488dff;
+    color: white;
+}

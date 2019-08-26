@@ -1,12 +1,15 @@
 import React from 'react';
-import './Setting.css';
+import PropTypes from 'prop-types';
 import Input from '../Input';
 import Button from '../Button';
 import gist, { cookies } from '../Utils';
+import { consumner } from '../Context/Authentication';
+import './Setting.css';
 
 class Setting extends React.Component {
   state = {
-    token: '',
+    visible: !cookies.getToken(),
+    token: cookies.getToken() || '',
     error: false,
   };
 
@@ -14,25 +17,56 @@ class Setting extends React.Component {
 
   saveToken = () => {
     const { token } = this.state;
-    gist.getAuthentication(token).then(({ data }) => {
-      console.log(data);
-      cookies.setToken(token);
-    }, () => {
-      this.setState({ error: true });
+    gist.getAuthentication(token)
+      .then(() => {
+        cookies.setToken(token);
+        this.setVisible(true);
+        this.setState({
+          visible: false,
+          error: false,
+        });
+      }, () => {
+        this.setState({ error: true });
+      });
+  };
+
+  setVisible = (value) => {
+    const { context } = this.props;
+    context.setVisible(value);
+  };
+
+  removeToken = () => {
+    cookies.removeToken();
+    this.setVisible(false);
+    this.setState({
+      token: '',
+      visible: true,
     });
   };
 
   render() {
+    const { error, token, visible } = this.state;
     return (
       <div>
         <h2>Setting</h2>
         <hr />
-        <h3>Token:</h3>{this.state.error && <div>This Token should has permission about Gist!</div>}
-        <Input value={this.state.token} onChange={this.setToken} />
-        <Button onClick={this.saveToken}>Save</Button>
+        <div className="token-setting">
+          <h3>Token:</h3>
+          {error && <div className="error">This Token should has permission about Gist!</div>}
+        </div>
+        {visible ? (
+          <>
+            <Input value={token} onChange={this.setToken} />
+            <Button tton onClick={this.saveToken}>Save Token</Button>
+          </>
+        ) : <Button onClick={this.removeToken}>Remove Token</Button>}
       </div>
     );
   }
 }
 
-export default Setting;
+Setting.propTypes = {
+  context: PropTypes.shape().isRequired,
+};
+
+export default consumner(Setting);

@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { userName as NMAE, userAvatar as AVATAR } from '../Constants';
+import { USER_AVATAR as AVATAR, USER_NAME as NMAE } from '../Constants';
 import Menu from '../Menu';
 import gist from '../Utils';
 import github from './github.svg';
 import './NavBar.css';
+import { consumer } from '../Context';
 
 
 class NavBar extends React.Component {
@@ -14,14 +16,16 @@ class NavBar extends React.Component {
   };
 
   componentDidMount() {
-    gist.getUser().then(({ data }) => {
-      console.log(data);
-      const { avatar_url: userAvatar, public_gists: publicGists, login: userName } = data;
-      this.setState({
-        userName,
-        userAvatar,
+    gist.getUser()
+      .then(({ data }) => {
+        const { avatar_url: userAvatar, public_gists: publicGists, login: userName } = data;
+        const { context } = this.props;
+        context.setGists(publicGists);
+        this.setState({
+          userName,
+          userAvatar,
+        });
       });
-    });
   }
 
   render() {
@@ -42,7 +46,8 @@ class NavBar extends React.Component {
             </NavLink>
           </div>
           <Menu render={userAvatar && <img className="avatar" src={userAvatar} alt="avatat" />}>
-            <NavLink className="nav-menu-item" to="/setting"><Menu.Item>Setting</Menu.Item></NavLink>
+            <NavLink className="nav-menu-item"
+                     to="/setting"><Menu.Item>Setting</Menu.Item></NavLink>
           </Menu>
         </nav>
       </header>
@@ -50,4 +55,8 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar;
+NavBar.propTypes = {
+  context: PropTypes.shape().isRequired,
+};
+
+export default consumer(NavBar);

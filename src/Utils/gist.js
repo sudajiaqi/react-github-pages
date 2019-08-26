@@ -1,16 +1,17 @@
 import axios from 'axios';
 import cookies from './cookie';
-import { baseURL, userName } from '../Constants';
+import { BASE_URL, PAGE_SIZE, USER_NAME as userName } from '../Constants';
 
 const token = cookies.getToken();
 const configWithToken = {
+  baseURL: BASE_URL,
   headers: {
     Authorization: `token ${token}`,
   },
 };
 
 const instance = axios.create({
-  baseURL,
+  baseURL: BASE_URL,
 });
 
 export const getAuthentication = (newToken) => {
@@ -27,7 +28,10 @@ export const getUser = () => instance.get(`/users/${userName}`);
 
 export const getGists = (page = 1) => {
   const config = {
-    params: { page, per_page: 20 },
+    params: {
+      page,
+      per_page: PAGE_SIZE,
+    },
   };
   return instance.get(`/users/${userName}/gists`, config);
 };

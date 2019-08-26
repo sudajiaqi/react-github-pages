@@ -22,10 +22,14 @@ class App extends React.Component {
     this.state = {
       gist: null,
       setGist: this.setGist,
+      gists: 1,
+      setGists: this.setGists,
     };
   }
 
   setGist = (gist) => this.setState({ gist });
+
+  setGists = (gists) => this.setState({ gists });
 
   render() {
     return (

@@ -1,11 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Item from './Item';
 import Button from '../Button';
 import './List.css';
 import gist from '../Utils';
 import history from '../history';
 import query from './query';
-import { Link } from 'react-router-dom';
+import Pagination from '../Pagination';
+import { consumer } from '../Context';
+import { PAGE_SIZE } from '../Constants';
 
 class List extends React.Component {
   state = {
@@ -32,8 +36,10 @@ class List extends React.Component {
 
   render() {
     const { gists, page } = this.state;
+    const { context } = this.props;
+
     return (
-      <div className="gist-list">
+      <>
         <div className="gist-list-title">
           <h4>Blog List</h4>
           <Link to="/gists/new"><Button>+ New Blog</Button></Link>
@@ -42,23 +48,19 @@ class List extends React.Component {
         {gists.map((item) => (
           <Item key={item.url} gist={item} />
         ))}
-        <div className="gist-page-btn">
-          <Button
-            disabled={page <= 1}
-            onClick={() => this.getGistsByPage(page - 1)}
-          >
-            Prev
-          </Button>
-          <Button
-            disabled={gists.length <= 0}
-            onClick={() => this.getGistsByPage(page + 1)}
-          >
-            Next
-          </Button>
-        </div>
-      </div>
+
+        <Pagination
+          onClick={this.getGistsByPage}
+          page={page}
+          total={Math.ceil(context.gists / PAGE_SIZE)}
+        />
+      </>
     );
   }
 }
 
-export default List;
+List.propTypes = {
+  context: PropTypes.shape().isRequired,
+};
+
+export default consumer(List);

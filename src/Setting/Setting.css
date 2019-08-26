@@ -1,0 +1,7 @@
+.token-setting{
+  display: flex;
+  align-items: center;
+}
+.error {
+  color: red;
+}

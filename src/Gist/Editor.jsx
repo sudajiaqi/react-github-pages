@@ -32,19 +32,31 @@ class Editor extends Component {
     this.setState({ content });
   };
 
+  setNewGist = (data, title, content) => {
+    const { context } = this.props;
+    const newGist = {
+      ...data,
+      title,
+      content,
+    };
+    context.setGist(newGist);
+    history.push(`/gists/${data.id}`);
+  };
+
   handleSave = () => {
     const { content, title, description } = this.state;
     const { id } = this.props;
-    gistActions.updateGist(id, title, description, content).then(({ data }) => {
-      const { context } = this.props;
-      const newGist = {
-        ...data,
-        title,
-        content,
-      };
-      context.setGist(newGist);
-      history.push(`/gists/${data.id}`);
-    });
+    if (id) {
+      gistActions.updateGist(id, title, description, content)
+        .then(({ data }) => {
+          this.setNewGist(data, title, content);
+        });
+    } else {
+      gistActions.createGist(title, description, content)
+        .then(({ data }) => {
+          this.setNewGist(data, title, content);
+        });
+    }
   };
 
   render() {

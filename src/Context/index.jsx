@@ -4,7 +4,9 @@ const Context = React.createContext({
   gist: null,
   setGist: () => {
   },
-  gists: [],
+  gists: 1,
+  setGists: () => {
+  },
 });
 
 const consumer = (Component) => (props) => (
