@@ -14,8 +14,8 @@
 }
 
 .button:disabled {
-    background: #ccc;
-    color: white;
+    background: none;
+    color: black;
 }
 
 .button.is-active {

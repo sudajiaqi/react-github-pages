@@ -9,7 +9,10 @@ import history from '../history';
 import query from './query';
 import Pagination from '../Pagination';
 import { consumer } from '../Context';
+import { visible } from '../Context/Authentication';
 import { PAGE_SIZE } from '../Constants';
+
+const AuthLink = visible(Link);
 
 class List extends React.Component {
   state = {
@@ -42,7 +45,7 @@ class List extends React.Component {
       <>
         <div className="gist-list-title">
           <h4>Blog List</h4>
-          <Link to="/gists/new"><Button>+ New Blog</Button></Link>
+          <AuthLink to="/gists/new"><Button>+ New Blog</Button></AuthLink>
         </div>
 
         {gists.map((item) => (

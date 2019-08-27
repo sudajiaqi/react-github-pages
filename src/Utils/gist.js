@@ -60,7 +60,7 @@ export const createGist = (title, description, content) => {
     },
   };
 
-  return instance.put('/gists', data, configWithToken);
+  return instance.post('/gists', data, configWithToken);
 };
 
 

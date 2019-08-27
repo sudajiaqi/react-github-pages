@@ -12,7 +12,8 @@
     "deploy": "gh-pages -d dist -r git@github.com:GodMoonLight/godmoonlight.github.io.git -b master",
     "eslint": "eslint ./src --ext js,jsx",
     "dev": "webpack-dev-server --config=config/webpack.dev.js --color",
-    "prod": "webpack --config=config/webpack.prod.js --color"
+    "prod": "webpack --config=config/webpack.prod.js --color",
+    "test": "yarn jest"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -32,6 +33,7 @@
     "eslint-config-airbnb": "^18.0.1",
     "eslint-import-resolver-webpack": "^0.11.1",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.15.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",

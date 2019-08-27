@@ -55,7 +55,7 @@ class GistContainer extends React.Component {
     const {
       title, description, content, updated_at: updatedAt, created_at: createdAt, id,
     } = context.gist || {};
-    return data && (
+    return (data || context.gist) && (
       <Switch>
         <Route exact path="/gists/:id">
           <Gist

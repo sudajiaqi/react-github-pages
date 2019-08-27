@@ -10,7 +10,7 @@ const MySwitch = (props) => {
       <Redirect to="/error" />
     </Switch>
   );
-}
+};
 
 MySwitch.propTypes = {
   children: PropTypes.node.isRequired,

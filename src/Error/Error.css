@@ -1,0 +1,11 @@
+.error-page {
+  height: 400px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  margin: auto;
+}
+
+.error-page-notification{
+  margin: 200px auto;
+}

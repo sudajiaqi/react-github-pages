@@ -4,16 +4,14 @@ import { Link } from 'react-router-dom';
 import './Item.css';
 import Button from '../Button';
 import { consumer } from '../Context';
-import history from '../history';
 import { visible } from '../Context/Authentication';
 
-const AuthButton = visible(Button);
+const AuthLink = visible(Link);
 
 class Item extends React.Component {
   setGist = () => {
     const { context, gist } = this.props;
     context.setGist(gist);
-    history.push(`/gists/${gist.id}/edit`);
   };
 
   render() {
@@ -23,7 +21,9 @@ class Item extends React.Component {
       <div className="gist-item">
         <div className="gist-title">
           <Link to={`/gists/${id}`} onClick={this.setGist}><h3>{Object.keys(files)[0]}</h3></Link>
-          <AuthButton onClick={this.setGist}>Edit</AuthButton>
+          <AuthLink to={`/gists/${id}/edit`} onClick={this.setGist}>
+            <Button onClick={this.setGist}>Edit</Button>
+          </AuthLink>
         </div>
         <span>{description}</span>
       </div>

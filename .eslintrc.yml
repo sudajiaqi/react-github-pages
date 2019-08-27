@@ -1,6 +1,7 @@
 env:
   browser: true
   es6: true
+  jest: true
 extends:
   - airbnb
 parser: babel-eslint
@@ -14,10 +15,16 @@ parserOptions:
   sourceType: module
 plugins:
   - react
+  - jest
 rules:
   react/jsx-filename-extension: [1, { "extensions": [".js", ".jsx"] }]
   react/state-in-constructor: 0
   import/no-extraneous-dependencies: [error, { devDependencies: true }]
+  jest/no-disabled-tests: warn
+  jest/no-focused-tests: error
+  jest/no-identical-title: error
+  jest/prefer-to-have-length: warn
+  jest/valid-expect: error
 
   settings:
     import/resolver:

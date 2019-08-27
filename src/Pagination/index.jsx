@@ -57,8 +57,12 @@ class Pagination extends React.Component {
     let { total } = this.props;
     const { current } = this.state;
     total = Math.max(total, current);
-    let pages = [];
 
+    if (total <= 1) {
+      return null;
+    }
+
+    let pages = [];
     if (total <= 5 || (current <= 4 && total - current <= 3)) {
       pages = this.pageRange(1, total);
     } else if (current <= 4) {

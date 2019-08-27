@@ -44,9 +44,7 @@ module.exports = (env) => ({
       favicon: path.resolve(root, 'favicon.jpeg'),
       template: path.resolve(root, '404.html'),
       title: 'JiaQi\'s Blog',
-      files: {
-        js: [],
-      },
+      inject: false,
     }),
   ],
   module: {

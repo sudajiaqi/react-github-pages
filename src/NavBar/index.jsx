@@ -41,13 +41,17 @@ class NavBar extends React.Component {
             <NavLink className="nav-link" to="/">
               All Blog
             </NavLink>
-            <NavLink className="nav-link" to="/readme">
+            <NavLink className="nav-link" to="/about">
               About
             </NavLink>
           </div>
           <Menu render={userAvatar && <img className="avatar" src={userAvatar} alt="avatat" />}>
-            <NavLink className="nav-menu-item"
-                     to="/setting"><Menu.Item>Setting</Menu.Item></NavLink>
+            <NavLink
+              className="nav-menu-item"
+              to="/setting"
+            >
+              <Menu.Item>Setting</Menu.Item>
+            </NavLink>
           </Menu>
         </nav>
       </header>

@@ -12,6 +12,8 @@ import Gist, { Editor } from './Gist';
 import { cookies } from './Utils';
 import Error from './Error';
 import Setting from './Setting';
+import Markdown from './Markdown';
+import { DESCRIPTION } from './Constants';
 import './App.css';
 
 const AuthRoute = visible(Route);
@@ -39,7 +41,7 @@ class App extends React.Component {
             <NavBar />
             <div className="content">
               <Switch>
-                <Route path="/" exact>
+                <Route exact path="/">
                   <List />
                 </Route>
                 <AuthRoute exact path="/gists/new">
@@ -49,7 +51,9 @@ class App extends React.Component {
                   <Gist />
                 </Route>
                 <Route exact path="/error" component={Error} />
-                <Route exact path="/about" component={Error} />
+                <Route exact path="/about">
+                  <Markdown data={DESCRIPTION} />
+                </Route>
                 <Route exact path="/setting" component={Setting} />
               </Switch>
             </div>
