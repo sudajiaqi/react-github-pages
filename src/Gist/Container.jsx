@@ -14,7 +14,7 @@ const AuthRoute = visible(Route);
 
 class GistContainer extends React.Component {
   state = {
-    data: null,
+    data: {},
   };
 
   componentDidMount() {
@@ -54,8 +54,12 @@ class GistContainer extends React.Component {
     const { context } = this.props;
     const {
       title, description, content, updated_at: updatedAt, created_at: createdAt, id,
-    } = context.gist || {};
-    return (data || context.gist) && (
+    } = context.gist || data;
+    if (!data.content && !content) {
+      return null;
+    }
+
+    return (
       <Switch>
         <Route exact path="/gists/:id">
           <Gist

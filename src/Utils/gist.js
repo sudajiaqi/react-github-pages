@@ -39,13 +39,17 @@ export const getGists = (page = 1) => {
 
 export const getGist = (id) => instance.get(`/gists/${id}`);
 
-export const updateGist = (id, title, description, content) => {
+export const updateGist = (id, title, description, content, originalTitle) => {
+  const files = {
+    [originalTitle]: {
+      filename: title,
+      content,
+    },
+  };
   const data = {
     public: true,
     description,
-    files: {
-      [title]: { content },
-    },
+    files,
   };
 
   return instance.patch(`/gists/${id}`, data, configWithToken);

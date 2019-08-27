@@ -45,9 +45,9 @@ class Editor extends Component {
 
   handleSave = () => {
     const { content, title, description } = this.state;
-    const { id } = this.props;
+    const { id, title: originalTitle } = this.props;
     if (id) {
-      gistActions.updateGist(id, title, description, content)
+      gistActions.updateGist(id, title, description, content, originalTitle)
         .then(({ data }) => {
           this.setNewGist(data, title, content);
         });
