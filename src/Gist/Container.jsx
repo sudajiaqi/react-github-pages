@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import * as axios from 'axios';
 import { Route } from 'react-router-dom';
 import history from '../history';
 import { consumer } from '../Context';
 import gistActions from '../Utils';
-import Gist from './Gist';
+// import Gist from './Gist';
 import Switch from '../Switch';
-import Editor from './Editor';
+// import Editor from './Editor';
 import { visible } from '../Context/Authentication';
 
+const Editor = React.lazy(() => import('./Editor'));
+const Gist = React.lazy(() => import('./Gist'));
 const AuthRoute = visible(Route);
 
 class GistContainer extends React.Component {
@@ -62,22 +64,26 @@ class GistContainer extends React.Component {
     return (
       <Switch>
         <Route exact path="/gists/:id">
-          <Gist
-            id={id}
-            title={title}
-            createdAt={createdAt}
-            updatedAt={updatedAt}
-            description={description}
-            content={content}
-          />
+          <Suspense fallback={<div>Loading</div>}>
+            <Gist
+              id={id}
+              title={title}
+              createdAt={createdAt}
+              updatedAt={updatedAt}
+              description={description}
+              content={content}
+            />
+          </Suspense>
         </Route>
         <AuthRoute exact path="/gists/:id/edit">
-          <Editor
-            id={id}
-            title={title}
-            description={description}
-            content={content}
-          />
+          <Suspense fallback={<div>Loading</div>}>
+            <Editor
+              id={id}
+              title={title}
+              description={description}
+              content={content}
+            />
+          </Suspense>
         </AuthRoute>
       </Switch>
     );

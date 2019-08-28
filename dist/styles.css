@@ -1,0 +1,391 @@
+.my-menu {
+    display: inline-block;
+    position: relative;
+}
+
+.menu-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menu-item-container {
+    position: absolute;
+    width: 185px;
+    border: 1px solid #dfe2e9;
+    background: white;
+    z-index: 999;
+    border-radius: 5px;
+    color: #2e3033;
+    font-size: 14px;
+    right: -15px;
+    padding: 10px;
+}
+
+.menu-item-container::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 180px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border: 1px solid #dfe2e9;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.menu-list-item {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.dropdown-caret {
+    border-bottom: 0 solid transparent;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top-style: solid;
+    border-top-width: 4px;
+    content: "";
+    display: inline-block;
+    height: 0;
+    vertical-align: middle;
+    width: 0;
+    margin-left: 4px;
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.header {
+    border-bottom: 1px;
+    background-color: #3c4146;
+    border-bottom-color: #202326;
+    padding-top: 25px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #767676;
+    padding-bottom: 25px;
+    text-align: center;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    margin: auto 30px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+.nav-link {
+    color: white;
+    text-decoration: none;
+    margin: auto 15px;
+}
+
+.nav-menu-item {
+    text-decoration: none;
+    color: #2e3033;
+}
+.github {
+    margin-right: 40px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 20%;
+}
+
+.button {
+    padding: 10px 30px;
+    margin: 5px;
+    border: 1px solid #dfe2e9;
+    border-radius: 50em;
+    background: white;
+    font-size: 16px;
+    color: #488dff;
+}
+
+.button:hover {
+    background: #488dff;
+    color: white;
+}
+
+.button:disabled {
+    background: none;
+    color: black;
+}
+
+.button.is-active {
+    background: #488dff;
+    color: white;
+}
+
+.error-page {
+  height: 400px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  margin: auto;
+}
+
+.error-page-notification{
+  margin: 200px auto;
+}
+
+.input {
+  -webkit-appearance: none;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.25em;
+  justify-content: flex-start;
+  line-height: 1.5;
+  padding-bottom: calc(0.375em - 1px);
+  padding-left: calc(0.625em - 1px);
+  padding-right: calc(0.625em - 1px);
+  padding-top: calc(0.375em - 1px);
+  position: relative;
+  vertical-align: top;
+}
+
+.input:-internal-autofill-selected {
+  background-color: rgb(232, 240, 254) !important;
+  background-image: none !important;
+  color: rgb(0, 0, 0) !important;
+}
+
+.token-setting{
+  display: flex;
+  align-items: center;
+}
+.error {
+  color: red;
+}
+
+body {
+    margin: 0;
+    color: #4a4a4a;
+    background: #f0f2f5;
+    font-family: sans-serif;
+}
+
+.content {
+    margin: 20px auto;
+    max-width: 1200px;
+    min-width: 500px;
+    padding: 0 30px;
+}
+
+.gist-item {
+  border: #dfe2e9 solid 1px;
+  border-radius: 5px;
+  margin: 10px 0;
+  display: block;
+  background: white;
+  padding: 1em;
+  color: #333333;
+  overflow-x: auto;
+}
+
+.gist-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+}
+
+a {
+  color: #488dff;
+}
+
+
+.gist-list-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #2e3033;
+}
+
+.paging {
+  display: flex;
+  justify-content: center;
+  height: 75px;
+}
+
+.page-button {
+  border-radius: 50%;
+  margin: auto 7px;
+  padding: 0 0;
+  font-size: 16px;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+}
+
+/*
+
+Darcula color scheme from the JetBrains family of IDEs
+
+*/
+
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #2b2b2b;
+}
+
+.hljs {
+  color: #bababa;
+}
+
+.hljs-strong,
+.hljs-emphasis {
+  color: #a8a8a2;
+}
+
+.hljs-bullet,
+.hljs-quote,
+.hljs-link,
+.hljs-number,
+.hljs-regexp,
+.hljs-literal {
+  color: #6896ba;
+}
+
+.hljs-code,
+.hljs-selector-class {
+  color: #a6e22e;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-section,
+.hljs-attribute,
+.hljs-name,
+.hljs-variable {
+  color: #cb7832;
+}
+
+.hljs-params {
+  color: #b9b9b9;
+}
+
+.hljs-string {
+  color: #6a8759;
+}
+
+.hljs-subst,
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-symbol,
+.hljs-selector-id,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-addition {
+  color: #e0c46c;
+}
+
+.hljs-comment,
+.hljs-deletion,
+.hljs-meta {
+  color: #7f7f7f;
+}
+
+.markdown{
+  border: #dfe2e9 solid 1px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.image {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  margin: auto 10px;
+}
+
+.textarea-wrapper {
+  position: relative;
+  min-height: 20px;
+  width: 100%;
+}
+
+.textarea-content {
+  display: block;
+  visibility: hidden;
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.3;
+  word-wrap: break-word;
+  padding: 0px;
+}
+
+.textarea-wrapper textarea {
+  overflow: hidden;
+  border: #dfe2e9 solid 1px;
+  border-radius: 5px;
+  padding: 1.5em;
+  resize: none;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  color: #333333;
+  line-height: 1.3;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.container {
+    height: 1000px;
+}
+
+.editor-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.preview {
+    display: inline-block;
+    cursor: pointer;
+    height: 28px;
+    width: 28px;
+    margin: auto 10px;
+}
+
+.markdown-textarea {
+    min-height: 400px;
+}
+
+.gist-markdown-edit {
+  margin-top: 60px;
+}
+
+.gist-title-input {
+  max-width: 500px;
+  width: 100%;
+}
+

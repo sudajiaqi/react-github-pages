@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import * as icons from './Icon';
 import Img from './Img';
-import Markdown from './Markdown';
 import Textarea from '../Textarea';
 import './MarkdownEditor.css';
+
+const Markdown = React.lazy(() => import('./Markdown'));
 
 const MODE = {
   WRITE: true,
@@ -203,7 +204,9 @@ class MarkdownEditor extends React.Component {
             onSelect={this.handleSelected}
           />
         ) : (
-          <Markdown data={value} />
+          <Suspense fallback={<div>Loading</div>}>
+            <Markdown data={value} />
+          </Suspense>
         )}
       </div>
     );

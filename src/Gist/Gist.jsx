@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Markdown from '../Markdown';
 import Button from '../Button';
 import { visible } from '../Context/Authentication';
+
+const Markdown = React.lazy(() => import('../Markdown'));
 
 const AuthLink = visible(Link);
 
@@ -27,7 +28,9 @@ const Gist = (props) => {
         {new Date(updatedAt).toLocaleDateString()}
       </p>
       <h4>{description}</h4>
-      <Markdown data={content} />
+      <Suspense fallback={<div>Loading</div>}>
+        <Markdown data={content} />
+      </Suspense>
     </div>
   );
 };
