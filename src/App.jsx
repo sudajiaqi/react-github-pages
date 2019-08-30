@@ -11,6 +11,7 @@ import { cookies } from './Utils';
 import Error from './Error';
 import Setting from './Setting';
 import { DESCRIPTION, TITLE } from './Constants';
+import Loading from './Loading/Loading';
 import './App.css';
 
 const List = React.lazy(() => import('./List'));
@@ -48,30 +49,24 @@ class App extends React.Component {
           <Router history={history}>
             <NavBar />
             <div className="content">
-              <Switch>
-                <Route exact path="/">
-                  <Suspense fallback={<div>Loading</div>}>
+              <Suspense fallback={<Loading />}>
+                <Switch>
+                  <Route exact path="/">
                     <List />
-                  </Suspense>
-                </Route>
-                <AuthRoute exact path="/gists/new">
-                  <Suspense fallback={<div>Loading</div>}>
+                  </Route>
+                  <AuthRoute exact path="/gists/new">
                     <Editor />
-                  </Suspense>
-                </AuthRoute>
-                <Route path="/gists/:id">
-                  <Suspense fallback={<div>Loading</div>}>
+                  </AuthRoute>
+                  <Route path="/gists/:id">
                     <Gist />
-                  </Suspense>
-                </Route>
-                <Route exact path="/error" component={Error} />
-                <Route exact path="/about">
-                  <Suspense fallback={<div>Loading</div>}>
+                  </Route>
+                  <Route exact path="/error" component={Error} />
+                  <Route exact path="/about">
                     <Markdown data={DESCRIPTION} />
-                  </Suspense>
-                </Route>
-                <Route exact path="/setting" component={Setting} />
-              </Switch>
+                  </Route>
+                  <Route exact path="/setting" component={Setting} />
+                </Switch>
+              </Suspense>
             </div>
           </Router>
         </Provider>

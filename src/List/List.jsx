@@ -11,6 +11,7 @@ import Pagination from '../Pagination';
 import { consumer } from '../Context';
 import { visible } from '../Context/Authentication';
 import { PAGE_SIZE } from '../Constants';
+import Loading from '../Loading/Loading';
 
 const AuthLink = visible(Link);
 
@@ -18,6 +19,7 @@ class List extends React.Component {
   state = {
     gists: [],
     page: 1,
+    loading: true,
   };
 
   componentDidMount() {
@@ -25,20 +27,24 @@ class List extends React.Component {
     this.getGistsByPage(page);
   }
 
+  setLoading = (loading) => this.setState({ loading });
+
   getGistsByPage = (page = 1) => {
     const { pathname } = history.location;
     history.push(pathname.concat('?') + query.stringify({ page }));
+    this.setLoading(true);
     gist.getGists(page)
       .then(({ data }) => {
         this.setState({
           gists: data,
           page,
         });
+        this.setLoading(false);
       });
   };
 
   render() {
-    const { gists, page } = this.state;
+    const { gists, page, loading } = this.state;
     const { context } = this.props;
 
     return (
@@ -47,8 +53,7 @@ class List extends React.Component {
           <h4>Blog List</h4>
           <AuthLink to="/gists/new"><Button>+ New Blog</Button></AuthLink>
         </div>
-
-        {gists.map((item) => (
+        {loading ? <Loading /> : gists.map((item) => (
           <Item key={item.url} gist={item} />
         ))}
 

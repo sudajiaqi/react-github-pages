@@ -62,9 +62,9 @@ class GistContainer extends React.Component {
     }
 
     return (
-      <Switch>
-        <Route exact path="/gists/:id">
-          <Suspense fallback={<div>Loading</div>}>
+      <Suspense fallback={<div>Loading</div>}>
+        <Switch>
+          <Route exact path="/gists/:id">
             <Gist
               id={id}
               title={title}
@@ -73,19 +73,18 @@ class GistContainer extends React.Component {
               description={description}
               content={content}
             />
-          </Suspense>
-        </Route>
-        <AuthRoute exact path="/gists/:id/edit">
-          <Suspense fallback={<div>Loading</div>}>
+          </Route>
+          <AuthRoute exact path="/gists/:id/edit">
             <Editor
               id={id}
               title={title}
               description={description}
               content={content}
             />
-          </Suspense>
-        </AuthRoute>
-      </Switch>
+
+          </AuthRoute>
+        </Switch>
+      </Suspense>
     );
   }
 }

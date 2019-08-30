@@ -23,7 +23,7 @@ module.exports = (env) => ({
     splitChunks: {
       cacheGroups: {
         vendor: {
-          test: /[\\/]node_modules[\\/](react|react-dom|react-router|history|axios|js-cookie|react-router-dom|axios)[\\/]/,
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router|history|axios|js-cookie|react-router-dom)[\\/]/,
           name: 'vendor',
           chunks: 'all',
         },
@@ -45,7 +45,7 @@ module.exports = (env) => ({
   module: {
     rules: [
       {
-        test: /\.(png|jpg|gif|svg|ico)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         use: [
           {
             loader: 'url-loader',
