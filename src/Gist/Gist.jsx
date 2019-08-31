@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from '../Button';
 import { visible } from '../Context/Authentication';
+import Loading from '../Loading';
 
 const Markdown = React.lazy(() => import('../Markdown'));
 
@@ -28,7 +29,7 @@ const Gist = (props) => {
         {new Date(updatedAt).toLocaleDateString()}
       </p>
       <h4>{description}</h4>
-      <Suspense fallback={<div>Loading</div>}>
+      <Suspense fallback={<Loading />}>
         <Markdown data={content} />
       </Suspense>
     </div>

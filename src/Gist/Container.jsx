@@ -5,9 +5,8 @@ import { Route } from 'react-router-dom';
 import history from '../history';
 import { consumer } from '../Context';
 import gistActions from '../Utils';
-// import Gist from './Gist';
 import Switch from '../Switch';
-// import Editor from './Editor';
+import Loading from '../Loading';
 import { visible } from '../Context/Authentication';
 
 const Editor = React.lazy(() => import('./Editor'));
@@ -62,7 +61,7 @@ class GistContainer extends React.Component {
     }
 
     return (
-      <Suspense fallback={<div>Loading</div>}>
+      <Suspense fallback={<Loading />}>
         <Switch>
           <Route exact path="/gists/:id">
             <Gist
