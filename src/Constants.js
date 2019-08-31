@@ -9,15 +9,14 @@ const USER_NAME = user;
 
 const PAGE_SIZE = 10;
 const BASE_URL = 'https://api.github.com';
-const USER_AVATAR = process.env.AVATAR;
 
-const TITLE = process.env.TITLE;
+const { TITLE, AVATAR: USER_AVATAR } = process.env;
 
 const DESCRIPTION = '## Introduction\n'
   + '\n'
   + 'Blog is based on GitHub Pages and GitHub API, implementation no backend, dynamically publish blog system.\n'
   + 'The data is  stored in the GitHub Gists and  add and update by GitHub API .\n'
-  + 'Leave your stars if you like. ╭(●｀∀´●)╯╰(●’◡’●)╮\n'
+  + 'Leave your stars if you like. \n╭(●｀∀´●)╯╰(●’◡’●)╮\n'
   + '\n'
   + '## Demo\n'
   + '\n'
