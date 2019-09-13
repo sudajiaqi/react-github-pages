@@ -33,7 +33,7 @@ class List extends React.Component {
     const { page } = this.state;
 
     if (page !== newPage) {
-      this.getGistsByPage(page);
+      this.getGistsByPage(newPage);
     }
   }
 
