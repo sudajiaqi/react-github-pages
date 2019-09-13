@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Item from './Item';
 import Button from '../Button';
 import './List.css';
@@ -27,21 +27,34 @@ class List extends React.Component {
     this.getGistsByPage(page);
   }
 
+  componentDidUpdate() {
+    const { location } = this.props;
+    const newPage = query.parse(location.search).page;
+    const { page } = this.state;
+
+    if (page !== newPage) {
+      this.getGistsByPage(page);
+    }
+  }
+
   setLoading = (loading) => this.setState({ loading });
+
+  setPage = (page) => this.setState({ page });
 
   getGistsByPage = (page = 1) => {
     const { pathname } = history.location;
+    this.setPage(page);
     history.push(pathname.concat('?') + query.stringify({ page }));
     this.setLoading(true);
     gist.getGists(page)
       .then(({ data }) => {
         this.setState({
           gists: data,
-          page,
         });
         this.setLoading(false);
       });
   };
+
 
   render() {
     const { gists, page, loading } = this.state;
@@ -69,6 +82,7 @@ class List extends React.Component {
 
 List.propTypes = {
   context: PropTypes.shape().isRequired,
+  location: PropTypes.shape().isRequired,
 };
 
-export default consumer(List);
+export default consumer(withRouter(List));
