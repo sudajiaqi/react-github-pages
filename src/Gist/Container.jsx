@@ -57,7 +57,7 @@ class GistContainer extends React.Component {
       title, description, content, updated_at: updatedAt, created_at: createdAt, id,
     } = context.gist || data;
     if (!data.content && !content) {
-      return null;
+      return <Loading />;
     }
 
     return (
