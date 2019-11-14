@@ -14,6 +14,16 @@ jobs:
     - name: yarn install, build, and test
       run: |
         sudo yarn install
-        sudo yarn eslint
+
+        yarn eslint | tee eslint_output.txt
+
+        if [ -z $(grep -E "[1-9]\d* error" ./eslint_output.txt) ]; then
+          echo "No errors "
+          exit 0
+        else
+          echo "Please correct the errors."
+          exit 1
+        fi
+
       env:
         CI: true
