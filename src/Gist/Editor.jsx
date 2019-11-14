@@ -39,6 +39,7 @@ class Editor extends Component {
       title,
       content,
     };
+    sa
     context.setGist(newGist);
     history.push(`/gists/${data.id}`);
   };
