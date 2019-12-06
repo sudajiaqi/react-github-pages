@@ -10,7 +10,11 @@ const USER_NAME = user;
 const PAGE_SIZE = 10;
 const BASE_URL = 'https://api.github.com';
 
-const { TITLE, AVATAR: USER_AVATAR } = process.env;
+const {
+  TITLE, AVATAR: USER_AVATAR, CLIENT_ID, CLIENT_SECRET,
+} = process.env;
+
+const REPO = USER_NAME.concat('.github.io');
 
 const DESCRIPTION = '## Introduction\n'
   + '\n'
@@ -59,5 +63,5 @@ const DESCRIPTION = '## Introduction\n'
   + '\n';
 
 export {
-  BASE_URL, USER_NAME, USER_AVATAR, PAGE_SIZE, DESCRIPTION, TITLE,
+  BASE_URL, USER_NAME, USER_AVATAR, PAGE_SIZE, DESCRIPTION, TITLE, REPO, CLIENT_ID, CLIENT_SECRET,
 };

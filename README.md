@@ -42,6 +42,31 @@ https://godmoonlight.github.io
 
 In you Blog, click the you avatar in the nav, the click `Setting` to the Setting Page to add Token.
 
+### add Comments feature
+
+if you want to use the function about comments, you should clone the repo and config the file `prod.env`
+
+```
+USER_NAME=
+AVATAR=
+TITLE=
+CLIENT_ID=
+CLIENT_SECRET=
+```
+
+#### `USER_NAME` is your github name
+
+#### AVATAR` is the url of your avatar
+
+#### `TITLE` is the title of your blog
+ 
+####  `CLIENT_ID` and `CLIENT_SECRET` 
+
+ To get these environments, you should register An OAuth Application
+ [Click here](https://github.com/settings/applications/new) to register an OAuth application, and you will get a `client ID` and a `client secret`.
+ 
+ Make sure the callback URL is right. Generally it's the origin of your site, like `https://imsun.net`.
+
 ### Development
 
 [https://github.com/GodMoonLight/react-github-pages](https://github.com/GodMoonLight/react-github-pages).
