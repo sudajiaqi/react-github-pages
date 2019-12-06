@@ -13,6 +13,9 @@ const gitment = (id) => new Gitment({
     client_secret: CLIENT_SECRET,
   },
 });
+console.log(USER_NAME);
+console.log(CLIENT_ID);
+console.log(CLIENT_SECRET);
 const renderComments = (id, container) => gitment(id)
   .render(container);
 

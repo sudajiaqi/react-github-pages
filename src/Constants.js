@@ -1,5 +1,6 @@
 const host = window.location.hostname;
 let user = process.env.USER_NAME;
+
 if (host.trim()
   .endsWith('.github.io')) {
   [user] = host.toString()
@@ -10,9 +11,11 @@ const USER_NAME = user;
 const PAGE_SIZE = 10;
 const BASE_URL = 'https://api.github.com';
 
-const {
-  TITLE, AVATAR: USER_AVATAR, CLIENT_ID, CLIENT_SECRET,
-} = process.env;
+// not use deconstruction, the bug of dotenv
+const USER_AVATAR = process.env.AVATAR;
+const title = process.env.TITLE;
+const clientId = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
 
 const REPO = USER_NAME.concat('.github.io');
 
@@ -63,5 +66,13 @@ const DESCRIPTION = '## Introduction\n'
   + '\n';
 
 export {
-  BASE_URL, USER_NAME, USER_AVATAR, PAGE_SIZE, DESCRIPTION, TITLE, REPO, CLIENT_ID, CLIENT_SECRET,
+  BASE_URL,
+  USER_NAME,
+  USER_AVATAR,
+  PAGE_SIZE,
+  DESCRIPTION,
+  title as TITLE,
+  REPO,
+  clientId as CLIENT_ID,
+  clientSecret as CLIENT_SECRET,
 };
