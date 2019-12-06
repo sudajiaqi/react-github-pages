@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/darcula.css';
+import 'highlight.js/styles/github-gist.css';
+import './CodeBlock.css';
 
 class CodeBlock extends React.PureComponent {
   constructor(props) {
@@ -29,7 +30,7 @@ class CodeBlock extends React.PureComponent {
     const { value, language } = this.props;
     return (
       <pre>
-        <code ref={this.setRef} className={`language-${language} hljs`}>
+        <code ref={this.setRef} className={`language-${language} hljs code-block`}>
           {value}
         </code>
       </pre>
