@@ -8,7 +8,6 @@ import github from './github.svg';
 import './NavBar.css';
 import { consumer } from '../Context';
 
-
 class NavBar extends React.Component {
   state = {
     userName: NMAE,

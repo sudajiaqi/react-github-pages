@@ -36,7 +36,6 @@ const DotButton = () => (
   </Button>
 );
 
-
 PageButton.Dot = DotButton;
 
 export default PageButton;

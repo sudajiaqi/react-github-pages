@@ -55,7 +55,6 @@ class List extends React.Component {
       });
   };
 
-
   render() {
     const { gists, page, loading } = this.state;
     const { context } = this.props;

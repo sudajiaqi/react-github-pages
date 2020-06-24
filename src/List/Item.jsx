@@ -35,4 +35,5 @@ Item.propTypes = {
   gist: PropTypes.shape().isRequired,
   context: PropTypes.shape().isRequired,
 };
+
 export default consumer(Item);

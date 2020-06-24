@@ -25,6 +25,8 @@ rules:
   jest/no-identical-title: error
   jest/prefer-to-have-length: warn
   jest/valid-expect: error
+  react/jsx-props-no-spreading: [0]
+  no-multiple-empty-lines: ["error", { "max": 2, "maxEOF": 0 }]
 
   settings:
     import/resolver:

@@ -1,7 +1,5 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
-
 
 const Authentication = React.createContext({
   visible: false,
@@ -35,6 +33,5 @@ const consumner = (Component) => (props) => (
     {(contxt) => <Component {...props} context={contxt} />}
   </Authentication.Consumer>
 );
-
 
 export { Provider, consumner, visibleHoc as visible };
