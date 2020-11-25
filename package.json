@@ -52,7 +52,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "gitment": "^0.0.3",
-    "highlight.js": "^9.15.9",
+    "highlight.js": "^10.1.2",
     "history": "^4.9.0",
     "js-cookie": "^2.2.1",
     "prop-types": "^15.7.2",
